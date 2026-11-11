@@ -1,4 +1,4 @@
-# nlp-04-api-text-data
+# nlp-04-api-text-data-custom
 
 [![Python 3.14](https://img.shields.io/badge/python-3.14%2B-blue?logo=python)](pyproject.toml)
 [![CI](https://github.com/denisecase/nlp-04-api-text-data/actions/workflows/ci-python-zensical.yml/badge.svg)](https://github.com/denisecase/nlp-04-api-text-data/actions/workflows/ci-python-zensical.yml)
@@ -13,9 +13,11 @@
 
 ## Project Overview
 
-Author: Denise Case
+Author: Addie Gemmell
 
-Date: 2026 October
+Date: 2026 November
+
+This is my customized version of the Module 4 example project. I plan to explore how API data can be collected, validated, and organized for analysis, with a focus on identifying patterns in fraud-related text. Copy
 
 Fourth project in the Web Mining and Applied NLP course.
 

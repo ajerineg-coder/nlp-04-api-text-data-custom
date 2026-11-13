@@ -1,99 +1,96 @@
-# Web Mining and Applied NLP Project Report
+# API Text Data Analysis
 
-Web Mining and Applied NLP | Project 04 | Example Report
+Author: Addie Gemmell
 
-## Overview
+Date: November 2026
 
-This project introduces structured text data acquisition
-using web APIs.
+## Project Overview
 
-The objective is to retrieve JSON data,
-validate its structure,
-transform records into a tabular representation,
-and persist the results for analysis.
+I wanted to explore how text data from an API can be
+organized and analyzed to identify patterns. My project
+focuses on comment lengths and email domains.
 
-The project demonstrates a modular
-Extract, Validate, Transform, Load (EVTL) pipeline
-with explicit inputs and outputs.
+## Phase 4: Technical Modification
 
-## Tools and Methods
+I added a derived feature called body_line_breaks to
+count the number of line breaks in each post.
+This provides another way to analyze text formatting.
 
-The project uses:
+## Phase 5: Custom Application
 
-- Python for pipeline orchestration and processing.
-- Requests for retrieving JSON data from a web API.
-- JSON for representing structured source records.
-- Validation checks for confirming expected data structures.
-- Polars for tabular transformation and derived features.
-- CSV for persistent output.
-- Logging for execution records.
-- Ruff, ty, and pytest for code verification.
-- Zensical and GitHub Pages for published documentation.
+I used the JSONPlaceholder comments API:
 
-The example retrieves post records
-from the JSONPlaceholder demonstration API.
+https://jsonplaceholder.typicode.com/comments
 
-The pipeline implements four stages:
+The original API contained posts with user IDs,
+titles, and body text. The comments API contains
+post IDs, comment IDs, names, email addresses,
+and body text.
 
-- **Extract** - retrieve JSON records and preserve the raw response.
-- **Validate** - verify the structure and types of the retrieved records.
-- **Transform** - select fields and calculate text lengths.
-- **Load** - save the transformed data to a CSV file.
+## EVTL Process
 
-Each stage is implemented as a separate Python module
-with explicit inputs and outputs.
+- Extract: Retrieve comments and save the raw JSON.
+- Validate: Check that all required fields exist
+  and have the expected data types.
+- Transform: Use Polars to organize the data
+  and calculate three derived features.
+- Load: Save the processed records to a CSV file.
 
-## Verification
+## Derived Features
 
-A successful execution displays:
+- comment_length: Number of characters in each comment.
+- email_domain: Domain extracted from the email address.
+- is_dot_com: Whether the email ends in .com.
 
-    Pipeline executed successfully!
+## Results
 
-The pipeline records execution details in a project log.
+The pipeline successfully processed 500 comments
+with eight columns.
 
-The following artifacts are created:
+| Metric | Result |
+| --- | ---: |
+| Average comment length | 161.53 |
+| Minimum comment length | 78 |
+| Maximum comment length | 263 |
+| .com domains | 38 |
+| Other domains | 462 |
 
-- `data/raw/case_raw.json` - original API response.
-- `data/processed/case_processed.csv` - transformed dataset.
+### Email Domain Distribution
 
-These results demonstrate that the pipeline can
-acquire, validate, transform, and persist API data.
-
-Automated tests provide additional verification
-of the pipeline's expected behavior.
+```text
+.com    | ##                        7.6%
+Other   | #######################  92.4%
+```
 
 ## Interpretation
 
-Web APIs provide structured access
-to externally maintained data.
+I found that only 7.6% of the email addresses
+ended in .com. Comment lengths also varied
+considerably throughout the dataset.
 
-Successful acquisition does not guarantee
-that the data meets analytical requirements.
+In financial fraud analysis, similar techniques
+could help identify patterns in email addresses
+and written communications. However, this dataset
+contains fictional information, and an email domain
+alone is not an indicator of fraud.
 
-Validation establishes whether the retrieved
-records have an expected structure,
-while transformation produces a consistent
-representation for subsequent analysis.
+## Run the Project
 
-The EVTL architecture separates responsibilities,
-making pipeline behavior easier to inspect,
-test, and maintain.
-
-## Documentation Index
-
-- **Home** - this landing page
-- [**Project Instructions**](project-instructions.md)
-- [**Glossary**](glossary.md)
+```bash
+uv run python -m nlp.pipeline_api_json_phase4
+uv run python -m nlp.pipeline_api_json_addie
+```
 
 ## Project Links
 
-- [GitHub Repository](https://github.com/denisecase/nlp-04-api-text-data)
-- [Example Pipeline](https://github.com/denisecase/nlp-04-api-text-data/blob/main/src/nlp/pipeline_api_json.py)
-- [Example Configuration](https://github.com/denisecase/nlp-04-api-text-data/blob/main/src/nlp/config.py)
-- [Pipeline Stages](https://github.com/denisecase/nlp-04-api-text-data/tree/main/src/nlp)
+- [GitHub Repository](https://github.com/ajerineg-coder/nlp-04-api-text-data-custom)
+- [Custom Pipeline](https://github.com/ajerineg-coder/nlp-04-api-text-data-custom/blob/main/src/nlp/pipeline_api_json_addie.py)
+- [Raw JSON](https://github.com/ajerineg-coder/nlp-04-api-text-data-custom/blob/main/data/raw/addie_comments_raw.json)
+- [Processed CSV](https://github.com/ajerineg-coder/nlp-04-api-text-data-custom/blob/main/data/processed/addie_comments_processed.csv)
 
 ## Project Resources
 
 - [Project Instructions](project-instructions.md)
+- [Glossary](glossary.md)
 - [Professional Python Guide](https://denisecase.github.io/pro-analytics-02/)
 - [Professional Python Project Explainer](https://pup-pack.github.io/professional-python-project-explainer/)

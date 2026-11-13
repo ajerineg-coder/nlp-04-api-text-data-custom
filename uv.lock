@@ -693,7 +693,7 @@ wheels = [
 ]
 
 [[package]]
-name = "nlp"
+name = "nlp-04-api-text-data-custom"
 version = "0.1.0"
 source = { editable = "." }
 default-groups = "all"

@@ -17,7 +17,7 @@ Author: Addie Gemmell
 
 Date: 2026 November
 
-This is my customized version of the Module 4 example project. I plan to explore how API data can be collected, validated, and organized for analysis, with a focus on identifying patterns in fraud related text. 
+This is my customized version of the Module 4 example project. I plan to explore how API data can be collected, validated, and organized for analysis, with a focus on identifying patterns in fraud related text.
 
 Fourth project in the Web Mining and Applied NLP course.
 
